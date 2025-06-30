@@ -14,7 +14,18 @@ pipeline {
 
     stage('Docker Build') {
       steps {
-        sh 'docker build -t complete-cicd .'
+        sh 'docker build -t amar0126/complete-cicd:latest .'
+      }
+    }
+
+    stage('Docker Push') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh '''
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            docker push amar0126/complete-cicd:latest
+          '''
+        }
       }
     }
 
@@ -40,6 +51,15 @@ pipeline {
         dir('terraform') {
           sh 'terraform apply -auto-approve'
         }
+      }
+    }
+
+    stage('Kubernetes Deploy') {
+      steps {
+        sh '''
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+        '''
       }
     }
   }
