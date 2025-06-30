@@ -17,7 +17,7 @@ resource "docker_image" "complete_cicd_image" {
 }
 
 resource "docker_container" "complete_cicd_container" {
-  name  = "complete-cicd"
+  name  = "complete-cicd-v2" # ✅ Updated to avoid name conflict
   image = docker_image.complete_cicd_image.image_id
 
   ports {
