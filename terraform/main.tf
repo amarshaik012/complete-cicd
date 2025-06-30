@@ -12,10 +12,18 @@ provider "docker" {
   host = "unix:///var/run/docker.sock"
 }
 
+# Build Docker image from local Dockerfile
 resource "docker_image" "complete_cicd_image" {
   name = "complete-cicd:latest"
+
+  build {
+    context    = "${path.module}"
+    dockerfile = "${path.module}/Dockerfile"
+    remove     = true
+  }
 }
 
+# Run a Docker container from the built image
 resource "docker_container" "complete_cicd_container" {
   name  = "complete-cicd"
   image = docker_image.complete_cicd_image.image_id
