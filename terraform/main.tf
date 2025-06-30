@@ -5,8 +5,6 @@ terraform {
       version = "~> 2.25.0"
     }
   }
-
-  required_version = ">= 1.3.0"
 }
 
 provider "docker" {
@@ -25,12 +23,8 @@ resource "docker_container" "complete_cicd_container" {
   ports {
     internal = 5050
     external = 5052
-    protocol = "tcp"
-    ip       = "0.0.0.0"
   }
 
-  restart         = "no"
-  remove_volumes  = true
-  must_run        = true
-  start           = true
+  remove_volumes = true
+  restart        = "no"
 }
