@@ -12,6 +12,12 @@ pipeline {
       }
     }
 
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t complete-cicd .'
+      }
+    }
+
     stage('Terraform Init') {
       steps {
         dir('terraform') {
