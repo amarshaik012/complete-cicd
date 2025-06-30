@@ -2,13 +2,13 @@ pipeline {
   agent any
 
   environment {
-    TF_IN_AUTOMATION = 'true'
+    DOCKER_BUILDKIT = '1'
   }
 
   stages {
     stage('Clone Repository') {
       steps {
-        checkout scm
+        git 'https://github.com/amarshaik012/complete-cicd.git'
       }
     }
 
@@ -27,6 +27,12 @@ pipeline {
       }
     }
 
+    stage('Force Remove Existing Container') {
+      steps {
+        sh 'docker rm -f complete-cicd-v2 || true'
+      }
+    }
+
     stage('Terraform Apply') {
       steps {
         dir('terraform') {
@@ -37,11 +43,11 @@ pipeline {
   }
 
   post {
-    success {
-      echo "✅ Terraform applied successfully!"
-    }
     failure {
-      echo "❌ Build failed!"
+      echo '❌ Build failed!'
+    }
+    success {
+      echo '✅ Build completed successfully.'
     }
   }
 }
