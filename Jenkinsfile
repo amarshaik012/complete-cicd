@@ -14,6 +14,15 @@ pipeline {
       }
     }
 
+    stage('Prepare Terraform Context') {
+      steps {
+        sh '''
+          cp Dockerfile terraform/
+          cp app.py terraform/
+        '''
+      }
+    }
+
     stage('Terraform Deploy') {
       steps {
         dir('terraform') {
