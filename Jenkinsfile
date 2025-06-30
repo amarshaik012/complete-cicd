@@ -15,6 +15,8 @@ pipeline {
     stage('Terraform Init') {
       steps {
         dir('terraform') {
+          // Clean stale Terraform provider data
+          sh 'rm -rf .terraform .terraform.lock.hcl'
           sh 'terraform init'
         }
       }
