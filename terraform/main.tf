@@ -5,6 +5,8 @@ terraform {
       version = "~> 2.25.0"
     }
   }
+
+  required_version = ">= 1.3.0"
 }
 
 provider "docker" {
@@ -19,10 +21,16 @@ resource "docker_image" "complete_cicd_image" {
 resource "docker_container" "complete_cicd_container" {
   name  = "complete-cicd-v2"
   image = docker_image.complete_cicd_image.image_id
+
   ports {
     internal = 5050
     external = 5052
+    protocol = "tcp"
+    ip       = "0.0.0.0"
   }
-  remove_volumes = true
-  restart        = "no"
+
+  restart         = "no"
+  remove_volumes  = true
+  must_run        = true
+  start           = true
 }
