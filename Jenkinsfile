@@ -27,8 +27,9 @@ pipeline {
       }
     }
 
-    stage('Force Remove Existing Container') {
+    stage('Remove Existing Container') {
       steps {
+        // This is critical to avoid the conflict error!
         sh 'docker rm -f complete-cicd-v2 || true'
       }
     }
