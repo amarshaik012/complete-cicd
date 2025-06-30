@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Clone Repository') {
       steps {
-        git branch: 'main', url: 'https://github.com/amarshaik012/complete-cicd.git'
+        checkout scm
       }
     }
 
