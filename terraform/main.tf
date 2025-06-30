@@ -17,12 +17,12 @@ resource "docker_image" "complete_cicd_image" {
 }
 
 resource "docker_container" "complete_cicd_container" {
-  name  = "complete-cicd-v2" # ✅ Updated to avoid name conflict
+  name  = "complete-cicd-v2" # Updated name to avoid conflict
   image = docker_image.complete_cicd_image.image_id
 
   ports {
     internal = 5050
-    external = 5051
+    external = 5052 # ✅ Changed external port from 5051 to 5052
     ip       = "0.0.0.0"
     protocol = "tcp"
   }
