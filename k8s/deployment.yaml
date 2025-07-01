@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: flask-app
-          image: amar0126/complete-cicd:latest
-          imagePullPolicy: Never
+          image: amar0126/flask-prometheus-app:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 5050
+            - name: http                #  Required for PodMonitor to match
+              containerPort: 5050
