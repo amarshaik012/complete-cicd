@@ -1,10 +1,8 @@
-# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Google Cloud SDK and large archives
 google-cloud-sdk/
 *.tar.gz
 *.zip
@@ -12,12 +10,10 @@ google-cloud-sdk/
 *.bak
 .DS_Store
 
-# Node (if using)
 node_modules/
 
-# Environment variables
 .env
 
-# Terraform
 terraform.tfstate
 terraform.tfstate.backup
+
