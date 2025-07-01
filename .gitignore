@@ -1,1 +1,23 @@
-terraform/*.tfstate*
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Google Cloud SDK and large archives
+google-cloud-sdk/
+*.tar.gz
+*.zip
+*.log
+*.bak
+.DS_Store
+
+# Node (if using)
+node_modules/
+
+# Env
+.env
+
+# Terraform
+terraform.tfstate
+terraform.tfstate.backup
