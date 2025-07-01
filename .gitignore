@@ -15,7 +15,7 @@ google-cloud-sdk/
 # Node (if using)
 node_modules/
 
-# Env
+# Environment variables
 .env
 
 # Terraform
