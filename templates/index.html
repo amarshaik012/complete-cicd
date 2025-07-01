@@ -5,7 +5,9 @@
     <title>DevOps</title>
     <style>
         body, html {
-            margin: 0; padding: 0; height: 100%;
+            margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: sans-serif;
         }
         .hero {
@@ -17,18 +19,28 @@
             justify-content: center;
             align-items: center;
             color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px 50px;
+            border-radius: 15px;
+            text-align: center;
         }
         h1 {
-            font-size: 4em;
-            background: rgba(0,0,0,0.4);
-            padding: 20px 40px;
-            border-radius: 12px;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
-    <div class="hero"></div>
-</body>
-</html>
-
+    <div class="hero">
+        <div class="overlay">
+            <h1>Welcome to DevOps Dashboard</h1>
+            <p>Streamline your CI/CD and infrastructure with one powerful view.</p>
+        </div>
+    </div>

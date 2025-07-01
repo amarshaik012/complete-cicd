@@ -6,8 +6,7 @@ spec:
   selector:
     app: flask-app
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5050
+    - protocol: TCP
+      port: 5050         # Changed from 80
+      targetPort: 5050
   type: NodePort
-

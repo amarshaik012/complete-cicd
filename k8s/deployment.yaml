@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: flask-app
-          image: complete-cicd:latest
+          image: amar0126/complete-cicd:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 5050
