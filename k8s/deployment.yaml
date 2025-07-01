@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-app
+  labels:
+    app: flask-app
 spec:
   replicas: 1
   selector:
@@ -13,9 +15,19 @@ spec:
         app: flask-app
     spec:
       containers:
-        - name: flask-app
-          image: amar0126/flask-prometheus-app:latest
-          imagePullPolicy: Always
-          ports:
-            - name: http                #  Required for PodMonitor to match
-              containerPort: 5050
+      - name: flask-container
+        image: us-central1-docker.pkg.dev/complete-cicd/complete-cicd-repo/complete-cicd:latest
+        ports:
+        - containerPort: 5050
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5050
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5050
+          initialDelaySeconds: 15
+          periodSeconds: 20
